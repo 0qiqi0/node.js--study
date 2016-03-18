@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <form name="userform">
+        用户名<input type="text" name="username"><br/>
+        密码<input type="text" name="password"><br/>
+        <input type="button" id="regBtn">注册</input>
+    </form>
+</body>
+<script>
+    //先进行表单序列化，即弄成query那样的
+    function serialize(){
+        var elements=Array.prototype.slice.call(form.elements); //elements是个集合但不是数组,可以把他转成数组
+        var data={};
+        elements.forEach(function(element){
+            var type=element.type;
+            switch(type){
+                case 'submit':
+                case 'cancel':
+                case 'reset':
+                    break;
+                case 'text':
+                  data.push(element.name+'='+elemnt.value)
+
+            }
+        });
+        return data.join('&')
+    }
+    window.onload=function(){
+        document.querySelector('#regBtn').addEventListener('click',function(){
+            var xhr=new XMLHttpRequest();
+            xhr.open('post','/reg',true);//true代表是否异步
+            xhr.responseType='text';
+            xhr.setHeader('COntent-Type','application/x-www-form-urlencoded')
+            xhr.onreadystatechange=function(){
+                if(xhr.readstate==4 && /2\d{2}/.test(xhr.status)){
+                   console.log(xhr.responseText);
+                }
+            }
+            var data=serialize(document.querySelector('form'));
+            console.log(data);
+            xhr.send(data);
+            return false;
+        })
+    }
+
+</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="clock"> </div>
+</body>
+<script>
+    window.onload=function(){
+        setInterval(function(){
+            //1创建ajax对象 ,此时对象状态为0
+            var xhr=new XMLHttpRequest();
+            //2打开请求，指定参数。状态为1.send方法调用后为2
+            xhr.open('GET','/clock',true);
+            //注册当状态变化之后的回调函数
+            xhr.onreadystatechange=function(){
+               // alert(xhr.readyState);
+                if(xhr.readyState==4){
+                    if(xhr.status==200){
+                        document.querySelector('#clock').innerHTML=xhr.responseText;
+                    }else{
+                        document.querySelector('#clock').innerHTML=xhr.statusText;
+                    }
+                }
+            }//先注册监听事件，在发送
+            //发送数据，指定请求数据（请求体）
+            xhr.send();
+        },1000)
+    }
+</script>
+</html>

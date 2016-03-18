@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    用户名<input type="text" name="username"><br/>
+    密码<input type="text" name="age"><br/>
+    <input type="button" value="注册" onclick="reg()">
+<table>
+    <tbody>
+        <tr>
+            <td>用户名</td>
+            <td>年龄</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+<script>
+    function reg(){
+        var username=document.querySelector("input[name='username']").value;
+        var age=document.querySelector("input[name='age']").value;
+        var xhr=new XMLHttpRequest();
+        var user={
+            username:username,
+            age:age
+        }
+        //2打开请求，指定参数。状态为1.send方法调用后为2
+        //错误xhr.open('GET','/reg',true);
+        xhr.open('POST','/reg',true);  //true当状态改变时会自动调用回调函数
+        //设置响应类型，会自动把xhr。response转化为对应的类型
+        xhr.responseType = 'json';
+        //注册当状态变化之后的回调函数
+        xhr.onreadystatechange=function(){
+            // alert(xhr.readyState);
+            if(xhr.readyState==4){
+                if(xhr.status==200){
+                    var users=xhr.response;  //接受到的是对象
+                    console.log(users);
+                    var tbody=document.querySelector("table tbody");
+                    var tr=document.createElement('tr');
+                    var td1=document.createElement('td');
+                    td1.innerHTML=user.username;
+                    var td2=document.createElement('td');
+                    td2.innerHTML=user.age;
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tbody.appendChild(tr);
+                }else{
+
+                }
+            }
+        }//先注册监听事件，在发送
+        //发送数据，指定请求数据（请求体）
+        xhr.send(JSON.stringify(user)); //对象到json字符串。。。返回json格式的字符串
+    }
+
+</script>
+</html>
