@@ -25,7 +25,7 @@ var request=http.request(options,function(res){
     });
 
 })
-//request是个可写流，请求体通过write和end方法指定
+//request是个可写流，请求体通过write和end方法指定.发送请求体
 request.write('{"name":"zfpx"');
 request.write(',"age":6}');
 request.end();//当调用end方法时请求词汇真正发出
