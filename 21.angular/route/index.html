@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gqzMod">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../bootstrap.css"/>
+</head>
+<body>
+<ul class="nav nav-pills">
+    <li role="presentation" class="active"><a href="#/list">列表页</a></li>
+    <li role="presentation"><a href="#/detail">详情页</a></li>
+</ul>
+    <div ng-view></div>
+</body>
+<script src="../angular.js"></script>
+<script src="../angular-route.js"></script>
+<script>
+    angular.module('gqzMod',['ngRoute']);
+    angular.module('gqzMod').controller('listCtrl',function($scope,$http){
+        $http.get('books.json').success(function(data){
+            $scope.books=data;
+        });
+
+    });
+    angular.module('gqzMod').controller('detailCtrl',function($scope,$routeParams,$http){
+        var bookId=$routeParams.bookId;
+        $http.get('books.json').success(function(data){
+            $scope.book= data.filter(function(book){
+                return book.id==bookId;
+            })[0]
+        });
+    });
+    //进行路由配置
+    angular.module('gqzMod').config(function($routeProvider){
+        $routeProvider.when('/list',{
+            templateUrl:'list.html',//这个提供模板，下面的提供数据
+            controller:'listCtrl'
+        }).when('/detail/:bookId',{
+            templateUrl:'detail.html',
+            controller:'detailCtrl'
+        }).otherwise({
+            redirectTo:'/list'
+        })
+    });
+
+</script>
+</html>

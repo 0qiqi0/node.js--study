@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+
+<div class="container" ng-controller="zfpxController">
+    {{110000000|date}}}<br/>
+    {{110000000|date:'yyyy-mm-dd hh:mm:ss'}}<br/>
+    {{99999|currency}}<br/>
+    {{"100"|number}}<br/>
+    {{"100.11"|number:2}}<br/>
+    {{{name:'gqz'}|json}}}<br/>
+    {{'ABCDE'|lowercase}}<br/>
+    {{'abcde'|uppersome:2}}
+    <ul>
+        <li ng-repeat="num in [1,2,5,4] | limitTo:4">{{num}}</li>
+        <li ng-repeat="book in books |orderBy:ob">{{book}}</li>
+    </ul>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').filter('uppersome',function(){
+        return function(input,length){
+            return input.slice(0,length).toUpperCase()+input.slice(length);
+        }
+    })
+    angular.module('zfpxMod').controller('zfpxController',function($scope) {
+        //工厂函数一般都要return一个对象回来
+        $scope.books=[{name:'node',price:5},{name:'js',price:8}]
+        $scope.ob='-price'
+    })
+</script>
+</html>
