@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gqzMod">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div ng-controller="gqzCtrl">
+    {{username}}
+    {{1+1}}
+    <span>
+          {{username}}
+    </span>
+    <input type="text" ng-model="username">
+    <button ng-click="onclickMe()"></button>
+</div>
+<div>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+    //引入angular.js，会在window下挂在angular属性
+    //定义一个模块,1名字2调用的其他参数。1个参数是取模块，2个参数是定义一个新模块
+    angular.module('gqzMod',[]); //var mod=angular.module('gqzMod',[]);这样写容易污染作用域。因为都在window下。
+    //创建控制器，会送一个￥scope作用域（空对象）
+    //控制器的作用就是为了给scope加属性
+    angular.module('gqzMod').controller('gqzCtrl',function($scope){
+        $scope.username=''; //html标签会从此处取值
+        $scope.onclickMe=function(){
+            alert($scope.username)
+        }
+
+    })
+
+</script>
+</html>
