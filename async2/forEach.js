@@ -22,3 +22,4 @@ async.forEach(arr,function(item,cb){
 },function(){
     console.timeEnd('cost')
 });
+
