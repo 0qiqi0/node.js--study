@@ -5,7 +5,7 @@
 
 var child_process=require('child_process');
 
-var spawn=child_process.exec;
+var exec=child_process.exec;
 //spawn没有回调，它获取数据是通过监听事件来获取。exec把整个命令放在第一个参数里
 //spawn是每产生一点输出就会输出，而exec是全部获取完再执行回调，进行输出
 //子进程都不会影响主进程的执行

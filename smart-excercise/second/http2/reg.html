@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+用户名<input type="text" name="username"/>
+年龄<input type="text" name="age"/>
+<input type="button" onclick="reg()" value="注册"/>
+<table>
+    <tbody>
+    <tr>
+        <td>用户名</td>
+        <td>年龄</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<script>
+    function reg(){
+        var username = document.querySelector("input[name='username']");
+        var age = document.querySelector("input[name='age']"); //h5 func
+        var user = {
+            username:username,
+            age:age
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = 'json'; //设置响应类型
+        xhr.open('post','/reg',true);
+        xhr.send(JSON.stringify(user)); // 对象转为字符串
+        xhr.onreadystatechange = function(){
+
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                    var result =xhr.response;
+                    var tbody=document.querySelector('table tbody');
+                    var tr = document.createElement('tr');
+                    var td1 = document.createElement('td');
+                    td1.innerHTML = result.username
+                    var td2 = document.createElement('td');
+                    td2.innerHTML = result.age;
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tbody.appendChild(tr);
+                }else{
+                    document.querySelector('#clock').innerHTML = xhr.statusText;
+
+                }
+            }
+        }
+    }
+</script>
+</html>

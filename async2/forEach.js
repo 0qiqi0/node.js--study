@@ -20,6 +20,9 @@ async.forEach(arr,function(item,cb){
         cb();
     },1000)
 },function(){
+   // console.log(result);
     console.timeEnd('cost')
 });
+
+
 

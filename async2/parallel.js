@@ -4,13 +4,13 @@ var async=require('async');
 async.parallel([
     function(cb){
         setTimeout(function(){
-            console.log('看电视');
+            //console.log('看电视');
             cb(null,'看电视');
         },3000);
     },
     function(cb){
         setTimeout(function(){
-            console.log('写作业');
+           // console.log('写作业');
             cb(null,'做作业');
         },3000);
 

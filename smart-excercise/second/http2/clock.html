@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="clock"></div>
+</body>
+<script>
+window.onload = function(){
+    setInterval(function(){
+        var xhr = new XMLHttpRequest();
+        xhr.open('get','/clock',true);
+        xhr.send(); // 写前面也不影响
+        xhr.onreadystatechange = function(){
+
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                    document.querySelector('#clock').innerHTML = xhr.responseText;
+                }else{
+                    document.querySelector('#clock').innerHTML = xhr.statusText;
+
+                }
+            }
+        }
+
+    },1000);
+}
+</script>
+</html>
