@@ -15,4 +15,5 @@ var girl = new Girl();
 girl.addListener('look',function(){
 console.log('look')
 })
-girl.emit('look')
+girl.emi
+t('look')
