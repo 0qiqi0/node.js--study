@@ -46,8 +46,89 @@
 		with:将代码的作用域设置到一个特定的对象中。严格模式下，不能使用。
          8、函数：可以封装任意多条语句，而且可以在任何地方任何时候执行。与其他语言不通，函数参数再内部是用一个数据arguments表示的。所以定义了参数，调用时传不传参数都无所谓。参数和arguments的值得内存空间是独立的，但是值会同步。arguments的长度取决于传入参数的个数，而不是由定义函数时命名的参数个数决定。此外没有传递值得命名参数会赋予undefined值。
             js中函数没有重载。
-三、执行环境和作用域：
+三、引用类型
+
+      引用类型的定义：引用类型是一种数据结构，描述的是一类对象所具有的属性和方法。
+
+      对象的定义：对象是某个特定引用类型的实例。
+
+1 Object类型：
+
+ 创建方式一：var girl = new Object( ): （也可以是var girl = { }）girl.name='qiqi' ;girl.age = 9;
+
+创建方式二：var  girl = {name:"qiqi",age:9};(字面量的方式)
+
+对象属性的访问：①girl.name;(通常的方法) ② girl ["name"]
+
+
+2 Array类型：
+
+       与其他语言数组的区别：①大小可以动态调整 ②每一项可以保存任何类型的数据。
+
+       创建方法一：var num = new Array("red","blue","black");
+
+创建方法二：var num = ["red","blue","black"]
+
+        创建方法三：var num = new Array(3);(含有3项的数组)
+
+值的读取：例如：num[0]，length属性：num.length,不是只读的，可以设置，进而从末尾移除项。
+
+        检测数组：① num instancof Array  ②当有多个全局执行环境时（有多个框架），es5提供了：Array.isArray(num)
+
+数组的方法：
+
+①join方法：将数组项拼接成一个字符串，参数为分隔符。例如：console.log(num.join（“|”）); //red|blue|black
+
+        ②es提供了使数组像栈一样的方法：push方法,返回修改后的数组的长度：如：var s1 = num.push("pink","grown") ; console.log（s1）//5
+
+pop方法：删除最后一项，返回该项。如：console.log(num.pop());//grown
+
+shift方法：删除第一项，返回该项。如：console.log(num.shift());//red
+
+③排序方法：num.reverse() 实现数组项反转，并返回新的num数组；num.sort():升序排列数组项，并返回新的num数组，此函数可以接受一个比较函数。
+
+④操作方法：
+
+concat方法：创建产生一个新的数组，如果传入参数，则将其添加到新数组的末尾，如果没有传入参数，则返回原数组的副本。如：var num = new Array("red","blue","black"); var newNum = num.concat("pink","white"); console.log(newNum) //red,blue,black,pink,white
+
+slice方法：基于当前数组函数新的数组，接受一个（返回从该项开始到数组结束的所有项）或者两个参数，即返回项的其实和结束位置(包前不包后)。接着上面得例子，console.log(newNum.slice(2));// black,pink,white  console.log(newNum.slice(2,4));//  black,pink
+
+splice方法（最强大的数组方法）：主要用途是向数组中部插入项。返回的是包含删除项的数组，原数组被改变。
+
+var num = new Array("red","blue","black"); var s1 = num.splice(0,1) ; console.log(num
+);//blue,black
+console.log(s1);//red
+
+var num = new Array("red","blue","black"); var s1 = num.splice(1,0,"white") ; console.log(num
+);//red,white,blue,black
+
+var num = new Array("red","blue","black");
+ var s1 = num.splice(1,1,"grown") ; console.log(num
+);//red,grown,black
 
 
 
-    
+⑤ 位置方法：
+
+indexOf方法：参数1：要查找的项（可选），参数2：查找的起始位置。返回索引数（未找到返回-1）.lastIndexOf方法：从末尾开始找。
+
+⑥迭代方法：
+
+es5定义了5个迭代方法，每个都接受两个参数，要在每一项上运行的函数和运行该函数的作用域对象（可选）。传入这些方法的函数会接受三个参数：数组项的值，该项在数组中的位置和数组对象本身。包括：map，every，filter，forEach，some方法
+
+⑦归并方法：reduce方法和reduceRight方法，都会迭代数组的所有项，构建一个最终返回的值。分别从开头和末尾开始迭代。接收参数：在每一项上调用的函数和（可选的）作为归并基础的初始值。该函数的返回值会作为第一个参数自动传给下一次迭代。
+
+3 Date类型
+
+new Date（）不传参的情况下自动获得当前日期和时间。要创建特定的日期对象要传入格式。
+
+ 4 RegExp类型
+
+var exp = / pattern /flags (flag:g--模式被用于所有字符串，而非发现第一个匹配项是停止；i--匹配项时忽略模式与字符串的大小写；m--到达一行文本末尾时还会继续查找下一行中是否存在匹配项)
+
+创建正则表达式的方式：① var pattern1 = /[bc]at/ i ;② var parttern2 = new RegExp("[bc]at","i")
+
+实例的方法：主要是exec（），为捕获组二设计，参数是应用模式的字符串，返回包含第一个匹配项信息的数组
+
+
+
