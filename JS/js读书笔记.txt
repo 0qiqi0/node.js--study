@@ -1,120 +1,186 @@
-一、Javascript简史：
-	Javascript在问世前，必须把表单数据发送到服务器端才能确定用户是否有没有填写某个必填项、是否填了脏值，netscape navigator（网景公司的浏览器）希望通过js来解决此问题，早期js出现就是为了简单的数据验证。
-	JS的组成：
-	① ECMAScript：
-	定义知识这门语言的基础，，它与浏览器无依赖关系。常见的浏览器知识ECMAScript实现可能的宿主环境之一。宿主环境不仅提供了ECMAScript的实现，同时也提供了			该语言的扩展（如DOM），以便语言和环境之间交互。其他的宿主环境，如node。ECMAScript：组成部分有：语法、类型、语句、关键字、保留字、操作符、对象。
-	② DOM：提供访问和操作网页内容的方法和接口。
-	③ BOM：提供与浏览器交互的方法和接口。
-	各大浏览器对ES5的支持越来越高，但对DOM的支持彼此相差比较多。
+一、JavaScript简史：
+
+         Javascript在问世前，必须把表单数据发送到服务器端才能确定用户是否有没有填写某个必填项、是否填了脏值，netscape navigator（网景公司的浏览器）希望通过js来解决此问题，早期js出现就是为了简单的数据验证。
+
+JS的组成：
+
+① ECMAScript：
+
+       定义知识这门语言的基础，，它与浏览器无依赖关系。常见的浏览器知识ECMAScript实现可能的宿主环境之一。宿主环境不仅提供了ECMAScript的实现，同时也提供了该语言的扩展（如DOM），以便语言和环境之间交互。其他的宿主环境，如node。
+
+       ECMAScript：组成部分有：语法、类型、语句、关键字、保留字、操作符、对象。
+
+② DOM：提供访问和操作网页内容的方法和接口。
+
+③ BOM：提供与浏览器交互的方法和接口。
+
+       各大浏览器对ES5的支持越来越高，但对DOM的支持彼此相差比较多。
+
 二、在html中使用Javascript
+
         1 在html中插入Javascript，要使用<script>元素。
+
          <script>元素的属性：
+
          async：可选，只试用于外部脚本，立即下载，但不妨碍页面中的其他操作。
-	 defer：可选，表示脚本可以延迟到文档完全被解析和显示之后再执行。只对外部脚本文件有效。
+
+ defer：可选，表示脚本可以延迟到文档完全被解析和显示之后再执行。只对外部脚本文件有效。
+
          src：可选，表示要执行的外部代码文件。当通过它来包含外部js文件时，要使用src属性，web应用程序一般把全部的Javascript引用放在<body>元素中页面内容的后面。                    以便所有的js文件下载、解析后，再呈现页面内容，减少延迟。通过此属性引入的文件可以跨域引入。
+
          type：可选。编写代码使用的脚本语言的内容类型（mime类型）
+
          2 文档的模式（由微软提出）：
-	 ①混杂模式：让IE的行为与IE5的相同，即包含非标准特性。不同的浏览器在这种模式下行为差异很大，跨浏览器行为没有一致性可言。所有浏览器默认开启此模式。
-	②标准模式：让IE的行为更接近标准行为。即严格型。
+
+        ①混杂模式：让IE的行为与IE5的相同，即包含非标准特性。不同的浏览器在这种模式下行为差异很大，跨浏览器行为没有一致性可言。所有浏览器默认开启此模式。
+
+        ②标准模式：让IE的行为更接近标准行为。即严格型。
+
          ③准标准模式：与标准模式很接近。
+
 三、基本概念
+
          1、标识符：第一个字符必须是字母、下划线、美元符号，驼峰式命名
-	2、 严格模式：es5引入了严格模式（更加严格的js解析和执行模型），要启用，在脚本的顶部使用："use strict"，在函数内部上方写入此语句，指定函数在严格模式下执行。
-	 3、变量：js中的变量是松散类型的，即变量可以用来保存如何类型的数据。如果在函数中通过var定义一个变量，该变量在函数退出后就会被销毁。
- 	 4、数据类型：5中基本数据类型：undefined、null（表示一个空对象的指针）、boolean、number、string，一种复杂数据类型：object（本质是一组无序的名值对）
-               typeof操作符：对一个值使用typeof，可能返回的值有undefined、boolean、number、string、object（如果这个值是一个对象或者null）、function。
-	       类型转换：Boolean()：ECMAScript中所有类型的值都可以使用此函数转换为等价的Boolean值（true或者false）
-			   Number()：可将如何数据类型转化为数值。
-  			   parseInt()和parseFloat（）专门用于将字符串转为数值。
-   			   tostring（）：除了null，undefined值外，其他数据类型的值都有此方法，将其转化为字符串。string（）可将如何类型的值转为字符串。
+
+         2、 严格模式：es5引入了严格模式（更加严格的js解析和执行模型），要启用，在脚本的顶部使用："use strict"，在函数内部上方写入此语句，指定函数在严格模式下执行。
+
+        3、变量：js中的变量是松散类型的，即变量可以用来保存如何类型的数据。如果在函数中通过var定义一个变量，该变量在函数退出后就会被销毁。
+
+        4、数据类型：5中基本数据类型：undefined、null（表示一个空对象的指针）、boolean、number、string，一种复杂数据类型：object（本质是一组无序的名值对）
+
+        typeof操作符：对一个值使用typeof，可能返回的值有undefined、boolean、number、string、object（如果这个值是一个对象或者null）、function。
+
+        类型转换：Boolean()：ECMAScript中所有类型的值都可以使用此函数转换为等价的Boolean值（true或者false）
+
+                         Number()：可将如何数据类型转化为数值。
+
+                         parseInt()和parseFloat（）专门用于将字符串转为数值。
+
+                         tostring（）：除了null，undefined值外，其他数据类型的值都有此方法，将其转化为字符串。string（）可将如何类型的值转为字符串。
+
          5、Object类型：
-                对象可通过执行new后跟要创建的对象类型的名称来创建。Object类型是所有它的实例的基础，Object类型所具有的任何属性和方法也同样存在于更具体的对象中。
-                 ① constructor：保存着用于创建当前对象的（构造）函数。
-		 ② hasOwnProperty（propertyName）：用于检查给定属性在当前对象实例中是否存在（而不是在实例的原型中）。如：o.hasOwnProperty("name");(属性名要以字符串的形式给出)
- 		③ isPrototypeOf（object）：用于检查传入的对象是否是传入对象的原型。
-                 ④propertyIsEnumerable（propertyName）：用于检查给定的属性是否能使用for-in来枚举。
-  		⑤ toLocalString（）：返回对象的字符串表示，与执行环境的地区对应；
- 		⑥ toString（）：返回对象的字符串表示；
-		 ⑦7valueOf():返回对象的字符串表示，通常与6相同。
+
+          对象可通过执行new后跟要创建的对象类型的名称来创建。Object类型是所有它的实例的基础，Object类型所具有的任何属性和方法也同样存在于更具体的对象中。
+
+          ① constructor：保存着用于创建当前对象的（构造）函数。
+
+          ② hasOwnProperty（propertyName）：用于检查给定属性在当前对象实例中是否存在（而不是在实例的原型中）。
+
+              如：o.hasOwnProperty("name");(属性名要以字符串的形式给出)
+
+          ③ isPrototypeOf（object）：用于检查传入的对象是否是传入对象的原型。
+
+          ④propertyIsEnumerable（propertyName）：用于检查给定的属性是否能使用for-in来枚举。
+
+
+⑤ toLocalString（）：返回对象的字符串表示，与执行环境的地区对应；
+
+
+⑥ toString（）：返回对象的字符串表示；
+
+          ⑦7valueOf():返回对象的字符串表示，通常与6相同。
+
          6、操作符：有算数操作符，位操作符，关系操作符，相等操作符，条件操作符，赋值操作符等。
-		==和！=：先转换再比较，===和！==：比较时不就行转换，要相等，数据类型也得相等。
-	7、语句：除了其他语言中常用的语句外：
-		for-in：是一种精准迭代语句，用来枚举对象的属性，属性名的顺序是补课预测的。如：
-		for（var propertyName in window）{
-			document.write(propertyName )
-		}
-		with:将代码的作用域设置到一个特定的对象中。严格模式下，不能使用。
+
+                              ==和！=：先转换再比较，===和！==：比较时不就行转换，要相等，数据类型也得相等。
+
+         7、语句：除了其他语言中常用的语句外：
+
+              for-in：是一种精准迭代语句，用来枚举对象的属性，属性名的顺序是补课预测的。如：
+
+                         for（var propertyName in window）{
+
+                             document.write(propertyName )
+
+                         }
+
+              with:将代码的作用域设置到一个特定的对象中。严格模式下，不能使用。
+
          8、函数：可以封装任意多条语句，而且可以在任何地方任何时候执行。与其他语言不通，函数参数再内部是用一个数据arguments表示的。所以定义了参数，调用时传不传参数都无所谓。参数和arguments的值得内存空间是独立的，但是值会同步。arguments的长度取决于传入参数的个数，而不是由定义函数时命名的参数个数决定。此外没有传递值得命名参数会赋予undefined值。
+
             js中函数没有重载。
-三、引用类型
 
-      引用类型的定义：引用类型是一种数据结构，描述的是一类对象所具有的属性和方法。
+四、执行环境和作用域链
 
-      对象的定义：对象是某个特定引用类型的实例。
+       执行环境是js最重要的概念之一，它规定了对象（函数）可以访问到的属性或者方法。执行环境中有变量对象，它包含了这个执行环境中的属性或者方法。变量对象中有作用域链，规定了访问其他属性或者方法的顺序。执行环境有全局环境和函数的执行环境。函数的执行环境中的变量对象叫做活动对象。
+
+
+
+          引用类型和构造函数的区别？var obj = new Object（）;  function Girl（name）{this.name = name }  var girl = new Girl( )Object本身即是一种类型，又是构造函数。JavaScript 中有构造函数和new 运算符。构造函数用来给实例对象初始化属性和值。任何JavaScript 函数都可以用做构造函数，构造函数必须使用new 运算符作为前缀来创建新的实例。
+
+         对象和实例是一回事吗？对象实例化指什么？实例都是对象，而对象不全是实例。将引用类型进行实例化就产生一个对象。Js里面没有类（ES6以前）的语法，所以类的概念就通过创造一个对象来实现。
+
+        引用类型中，Function和Object是并列的的吗？
+
+        构造函数是什么？JavaScript 中并没有真正的类，但JavaScript 中有构造函数和new 运算符。构造函数用来给实例对象初始化属性和值。任何JavaScript 函数都可以用做构造函数，构造函数必须使用new 运算符作为前缀来创建新的实例。所以说对象既可以作为类理解（如：构造函数），也可以作为实例理解（构造函数本身就是Function的实例）。一切皆对象。构造函数首字母一般大写。当使用new 关键字来调用构造函数时，执行上下文从全局对象（window）变成一个空的上下文，这个上下文代表了新生成的实例。因此，this 关键字指向当前创建的实例。
+
+
+五、引用类型
+
+          引用类型的定义：引用类型是一种数据结构，描述的是一类对象所具有的属性和方法。
+
+          对象的定义：对象是某个特定引用类型的实例。
 
 1 Object类型：
 
- 创建方式一：var girl = new Object( ): （也可以是var girl = { }）girl.name='qiqi' ;girl.age = 9;
+           创建方式一：var girl = new Object( ): （也可以是var girl = { }）girl.name='qiqi' ;girl.age = 9;
 
-创建方式二：var  girl = {name:"qiqi",age:9};(字面量的方式)
+           创建方式二：var  girl = {name:"qiqi",age:9};(字面量的方式)
 
-对象属性的访问：①girl.name;(通常的方法) ② girl ["name"]
+           对象属性的访问：①girl.name;(通常的方法) ② girl ["name"]
 
 
 2 Array类型：
 
-       与其他语言数组的区别：①大小可以动态调整 ②每一项可以保存任何类型的数据。
+         与其他语言数组的区别：①大小可以动态调整 ②每一项可以保存任何类型的数据。
 
-       创建方法一：var num = new Array("red","blue","black");
+          创建方法一：var num = new Array("red","blue","black");
 
-创建方法二：var num = ["red","blue","black"]
+          创建方法二：var num = ["red","blue","black"]
 
-        创建方法三：var num = new Array(3);(含有3项的数组)
+          创建方法三：var num = new Array(3);(含有3项的数组)
 
-值的读取：例如：num[0]，length属性：num.length,不是只读的，可以设置，进而从末尾移除项。
+          值的读取：例如：num[0]，length属性：num.length,不是只读的，可以设置，进而从末尾移除项。
 
-        检测数组：① num instancof Array  ②当有多个全局执行环境时（有多个框架），es5提供了：Array.isArray(num)
+          检测数组：① num instancof Array  ②当有多个全局执行环境时（有多个框架），es5提供了：Array.isArray(num)
 
 数组的方法：
 
-①join方法：将数组项拼接成一个字符串，参数为分隔符。例如：console.log(num.join（“|”）); //red|blue|black
+        ①join方法：将数组项拼接成一个字符串，参数为分隔符。例如：console.log(num.join（“|”）); //red|blue|black
 
-        ②es提供了使数组像栈一样的方法：push方法,返回修改后的数组的长度：如：var s1 = num.push("pink","grown") ; console.log（s1）//5
+
+②es提供了使数组像栈一样的方法：push方法,返回修改后的数组的长度：如：var s1 = num.push("pink","grown") ; console.log（s1）//5
 
 pop方法：删除最后一项，返回该项。如：console.log(num.pop());//grown
 
 shift方法：删除第一项，返回该项。如：console.log(num.shift());//red
 
-③排序方法：num.reverse() 实现数组项反转，并返回新的num数组；num.sort():升序排列数组项，并返回新的num数组，此函数可以接受一个比较函数。
+        ③排序方法：num.reverse() 实现数组项反转，并返回新的num数组；num.sort():升序排列数组项，并返回新的num数组，此函数可以接受一个比较函数。
 
-④操作方法：
+        ④操作方法：
 
-concat方法：创建产生一个新的数组，如果传入参数，则将其添加到新数组的末尾，如果没有传入参数，则返回原数组的副本。如：var num = new Array("red","blue","black"); var newNum = num.concat("pink","white"); console.log(newNum) //red,blue,black,pink,white
+        concat方法：创建产生一个新的数组，如果传入参数，则将其添加到新数组的末尾，如果没有传入参数，则返回原数组的副本。如：var num = new Array("red","blue","black"); var newNum = num.concat("pink","white"); console.log(newNum) //red,blue,black,pink,white
 
-slice方法：基于当前数组函数新的数组，接受一个（返回从该项开始到数组结束的所有项）或者两个参数，即返回项的其实和结束位置(包前不包后)。接着上面得例子，console.log(newNum.slice(2));// black,pink,white  console.log(newNum.slice(2,4));//  black,pink
+         slice方法：基于当前数组函数新的数组，接受一个（返回从该项开始到数组结束的所有项）或者两个参数，即返回项的其实和结束位置(包前不包后)。接着上面得例子，console.log(newNum.slice(2));// black,pink,white  console.log(newNum.slice(2,4));//  black,pink
 
-splice方法（最强大的数组方法）：主要用途是向数组中部插入项。返回的是包含删除项的数组，原数组被改变。
+          splice方法（最强大的数组方法）：主要用途是向数组中部插入项。返回的是包含删除项的数组，原数组被改变。
 
-var num = new Array("red","blue","black"); var s1 = num.splice(0,1) ; console.log(num
-);//blue,black
+var num = new Array("red","blue","black"); var s1 = num.splice(0,1) ; console.log(num);//blue,black
 console.log(s1);//red
 
-var num = new Array("red","blue","black"); var s1 = num.splice(1,0,"white") ; console.log(num
-);//red,white,blue,black
+var num = new Array("red","blue","black"); var s1 = num.splice(1,0,"white") ; console.log(num);//red,white,blue,black
 
 var num = new Array("red","blue","black");
- var s1 = num.splice(1,1,"grown") ; console.log(num
-);//red,grown,black
+ var s1 = num.splice(1,1,"grown") ; console.log(num);//red,grown,black
 
 
+          ⑤ 位置方法：
 
-⑤ 位置方法：
+           indexOf方法：参数1：要查找的项（可选），参数2：查找的起始位置。返回索引数（未找到返回-1）.lastIndexOf方法：从末尾开始找。
 
-indexOf方法：参数1：要查找的项（可选），参数2：查找的起始位置。返回索引数（未找到返回-1）.lastIndexOf方法：从末尾开始找。
+         ⑥迭代方法：
 
-⑥迭代方法：
-
-es5定义了5个迭代方法，每个都接受两个参数，要在每一项上运行的函数和运行该函数的作用域对象（可选）。传入这些方法的函数会接受三个参数：数组项的值，该项在数组中的位置和数组对象本身。包括：map，every，filter，forEach，some方法
+         es5定义了5个迭代方法，每个都接受两个参数，要在每一项上运行的函数和运行该函数的作用域对象（可选）。传入这些方法的函数会接受三个参数：数组项的值，该项在数组中的位置和数组对象本身。包括：map，every，filter，forEach，some方法
 
 ⑦归并方法：reduce方法和reduceRight方法，都会迭代数组的所有项，构建一个最终返回的值。分别从开头和末尾开始迭代。接收参数：在每一项上调用的函数和（可选的）作为归并基础的初始值。该函数的返回值会作为第一个参数自动传给下一次迭代。
 
@@ -124,11 +190,37 @@ new Date（）不传参的情况下自动获得当前日期和时间。要创建
 
  4 RegExp类型
 
-var exp = / pattern /flags (flag:g--模式被用于所有字符串，而非发现第一个匹配项是停止；i--匹配项时忽略模式与字符串的大小写；m--到达一行文本末尾时还会继续查找下一行中是否存在匹配项)
+          var exp = / pattern /flags (flag:g--模式被用于所有字符串，而非发现第一个匹配项是停止；i--匹配项时忽略模式与字符串的大小写；m--到达一行文本末尾时还会继续查找下一行中是否存在匹配项)
 
-创建正则表达式的方式：① var pattern1 = /[bc]at/ i ;② var parttern2 = new RegExp("[bc]at","i")
+           创建正则表达式的方式：① var pattern1 = /[bc]at/ i ;② var parttern2 = new RegExp("[bc]at","i")
 
-实例的方法：主要是exec（），为捕获组二设计，参数是应用模式的字符串，返回包含第一个匹配项信息的数组
+          实例的方法：主要是exec（），为捕获组二设计，参数是应用模式的字符串，返回包含第一个匹配项信息的数组。
+
+5 Function类型
+
+         函数是js中很大的一个亮点，因为在js中函数是对象也可以是变量，所以函数可以作为参数，返回值来使用。同时函数名是可以改变的。函数都是Function类型的实例。函数具有自己的属性和方法。
 
 
+       函数声明的方法：①function sum(x,y){return x+y;}; ②var sum = function (x,y){return x+y;};③使用new Function():不建议
 
+       属性：
+
+        ①length：是函数可以接受的命名参数的个数。
+
+        ②prototype：在创建自定义引用类型以及实现继承时,该属性的作用极为重要,该属性不可枚举,此属性使用for-in 方法（用来循环）无法发现
+
+         ③arguments：类数组，用来存放函数的。与其他语言不同，ECMAScript函数不介意传递进来多少个参数，也不在乎是什么类型。因为实参在内部是用一个类数组来表示的，函数接收到的始终是个类数组。命名参数(形参)只提供便利，但不是必须的。
+
+         arguments.callee：callee 属性是 arguments对象的一个成员，他表示对函数对象本身的引用，这有利于匿名函数的递归或确保函数的封装性
+
+         arguments.caller：表示谁引用了此函数
+
+         ④ this：this引用的是函数据以执行操作的对象，也就是函数在执行时所处的作用域。this所在的函数是当做哪个对象的方法调用的，则该对象就是this所引用的对象。总有一个原则，那就是this指的是调用函数的那个对象。（this是指变量对象？）
+
+        方法：
+
+          ① call方法：将函数绑定到另外一个对象上去运行（疑问：这个对象就是指执行环境，也即是this？）
+
+          ② apply方法：apply的用法和call大致相同，只有一点区别，apply只接受两个参数，第一个参数和call相同，第二个参数必须是一个数组，数组中的元素对应的就是函数的形参。
+
+          ③ bind方法：会产生新的方法。
