@@ -25,8 +25,15 @@ var s = num.filter(function(item){
 console.log(s)*/
 /*
 var s1 = "qiqi";  s1.color = "boy" ; console.log(s1.color);*/
+/*
 function c(a,b){
    var s = a+b;
 }
 c(1,2)
-console.log(s)
+console.log(s)*/
+
+function fn(){
+    return 1;
+}
+console.log(fn.__proto__.constructor == fn)
+console.log(Function.prototype.constructor)
